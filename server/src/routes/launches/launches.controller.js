@@ -11,7 +11,7 @@ function httpAddNewLaunch(req, res) {
     !newLaunch.mission ||
     !newLaunch.rocket ||
     !newLaunch.launchDate ||
-    !newLaunch.destination
+    !newLaunch.target
   ) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
