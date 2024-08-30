@@ -5,19 +5,6 @@ const planets = require('./planets.mongo');
 let DEFAULT_FLIGHT_NUMBER = 100;
 const SPACE_X_API_URL = 'https://api.spacexdata.com/v4/launches/query';
 
-const launch = {
-  flightNumber: 100, //flight_number
-  mission: 'Kepler Exploration X', //name
-  rocket: 'Explorer IS1', // rocket.name
-  launchDate: new Date('December 27, 2030'), // date_local
-  target: 'Kepler-442 b', //not applicable
-  customers: ['NASA', 'Kepler Institute'], //payload.customers for each payload
-  upcoming: true, //upcoming
-  success: true, //success
-};
-
-saveLaunch(launch);
-
 async function populateLaunches() {
   console.log('Loading launches data...');
   const response = await axios.post(SPACE_X_API_URL, {
@@ -110,6 +97,9 @@ async function getAllLaunches(skip, limit) {
         __v: 0,
       }
     )
+    .sort({
+      flightNumber: 1,
+    })
     .skip(skip)
     .limit(limit);
 }
