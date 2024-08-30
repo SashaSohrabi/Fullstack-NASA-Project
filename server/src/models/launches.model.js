@@ -74,7 +74,6 @@ async function abortLaunchById(launchId) {
     success: false,
   });
 
-  console.log(aborted);
   return aborted.modifiedCount === 1 && aborted.matchedCount === 1;
 }
 
