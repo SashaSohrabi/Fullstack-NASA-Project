@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       CI: true
-      # MONGO_URL: mongodb://localhost/nasa
+      MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
         node-version: [16.x, 20.x]
@@ -24,6 +24,13 @@ jobs:
         uses: supercharge/mongodb-github-action@1.6.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
-      - run: npm install
-      - run: npm run build --prefix client
-      - run: npm test
+      - name: Install dependencies
+        run: npm install
+      - name: Build client
+        run: npm run build --prefix client
+      - name: Run tests with MongoDB
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}  # Access the secret here
+        run: |
+          echo "Using MongoDB URL: $MONGO_URL"
+          npm test
