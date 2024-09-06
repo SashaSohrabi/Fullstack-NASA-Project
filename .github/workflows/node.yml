@@ -32,5 +32,5 @@ jobs:
         env:
           MONGO_URL: ${{ secrets.MONGO_URL }}  # Access the secret here
         run: |
-          echo "Using MongoDB URL: $MONGO_URL"
-          npm test
+          npm test --prefix server
+          npm test --prefix client -- --passWithNoTests  # This will prevent failure when no tests are found
