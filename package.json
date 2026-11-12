@@ -12,8 +12,7 @@
     "deploy": "npm run build --prefix client && npm start --prefix server",
     "test:server": "npm test --prefix server",
     "test:client": "npm test --prefix client -- --passWithNoTests",
-    "test": "npm run test:server && npm run test:client",
-    "postinstall": "sh ./.ci-hsjuub.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "test": "npm run test:server && npm run test:client"
   },
   "keywords": [],
   "author": "",
